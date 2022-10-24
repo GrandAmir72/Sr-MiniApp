@@ -156,43 +156,127 @@ function biuldUpTeams(teamImport, teamProity) {
         break;
     }
   }
-  console.log(team);
+  let btnOfLinks
+  let x
   switch (teamProity) {
     case "A":
       document.getElementById("teamNameA").innerText = team.nameOfTeam;
       document.getElementById("goalOfTeamA").innerText = team.numberOfGoals;
-      document.getElementById("AllActionGoalOfTeamA").innerText = team.numberOfGoals;
-      document.getElementById("AllActionAssistOfTeamA").innerText = team.numberOfAssist;
-      document.getElementById("AllActionDefenceOfTeamA").innerText = team.numberOfDefence;
-      document.getElementById("AllActionDuelOfTeamA").innerText = team.numberOfDuel;
-      document.getElementById("AllActionFoulOfTeamA").innerText = team.numberOfFoul;
-      document.getElementById("AllActionFunnySpecialMomentsOfTeamA").innerText = team.numberOfFunnySpecialMoments;
-      document.getElementById("AllActionGKMovesOfTeamA").innerText = team.numberOfGKMoves;
-      document.getElementById("AllActionOutPfPlayOfTeamA").innerText = team.numberOfOutPfPlay;
-      document.getElementById("AllActionPassingOfTeamA").innerText = team.numberOfPassing;
-      document.getElementById("AllActionPenaltyOfTeamA").innerText = team.numberOfPenalty;
-      document.getElementById("AllActionPossessionOfTeamA").innerText = team.numberOfPossession;
-      document.getElementById("AllActionSaveOfTeamA").innerText = team.numberOfSave;
-      document.getElementById("AllActionShotOfTeamA").innerText = team.numberOfShot;
-      document.getElementById("AllActionSkillMovesOfTeamA").innerText = team.numberOfSkillMoves;
+      document.getElementById("AllActionGoalOfTeamA").innerText =
+        team.numberOfGoals;
+      document.getElementById("AllActionAssistOfTeamA").innerText =
+        team.numberOfAssist;
+      document.getElementById("AllActionDefenceOfTeamA").innerText =
+        team.numberOfDefence;
+      document.getElementById("AllActionDuelOfTeamA").innerText =
+        team.numberOfDuel;
+      document.getElementById("AllActionFoulOfTeamA").innerText =
+        team.numberOfFoul;
+      document.getElementById("AllActionFunnySpecialMomentsOfTeamA").innerText =
+        team.numberOfFunnySpecialMoments;
+      document.getElementById("AllActionGKMovesOfTeamA").innerText =
+        team.numberOfGKMoves;
+      document.getElementById("AllActionOutPfPlayOfTeamA").innerText =
+        team.numberOfOutPfPlay;
+      document.getElementById("AllActionPassingOfTeamA").innerText =
+        team.numberOfPassing;
+      document.getElementById("AllActionPenaltyOfTeamA").innerText =
+        team.numberOfPenalty;
+      document.getElementById("AllActionPossessionOfTeamA").innerText =
+        team.numberOfPossession;
+      document.getElementById("AllActionSaveOfTeamA").innerText =
+        team.numberOfSave;
+      document.getElementById("AllActionShotOfTeamA").innerText =
+        team.numberOfShot;
+      document.getElementById("AllActionSkillMovesOfTeamA").innerText =
+        team.numberOfSkillMoves;
+        btnOfLinks = document.createElement("button");
+      btnOfLinks.setAttribute("class", "btn btn-outline-info");
+      btnOfLinks.setAttribute("data-bs-toggle", "modal");
+      btnOfLinks.setAttribute("data-bs-target", `#${team.nameOfTeam}`);
+       x= document.createTextNode("Video links");
+      btnOfLinks.appendChild(x);
+      document.getElementById("showBtnLinks").appendChild(btnOfLinks);
+      modalCreator(team.nameOfTeam,team.goals,'goals');
       break;
     case "B":
       document.getElementById("teamNameB").innerText = team.nameOfTeam;
       document.getElementById("goalOfTeamB").innerText = team.numberOfGoals;
-      document.getElementById("AllActionGoalOfTeamB").innerText = team.numberOfGoals;
-      document.getElementById("AllActionAssistOfTeamB").innerText = team.numberOfAssist;
-      document.getElementById("AllActionDefenceOfTeamB").innerText = team.numberOfDefence;
-      document.getElementById("AllActionDuelOfTeamB").innerText = team.numberOfDuel;
-      document.getElementById("AllActionFoulOfTeamB").innerText = team.numberOfFoul;
-      document.getElementById("AllActionFunnySpecialMomentsOfTeamB").innerText = team.numberOfFunnySpecialMoments;
-      document.getElementById("AllActionGKMovesOfTeamB").innerText = team.numberOfGKMoves;
-      document.getElementById("AllActionOutPfPlayOfTeamB").innerText = team.numberOfOutPfPlay;
-      document.getElementById("AllActionPassingOfTeamB").innerText = team.numberOfPassing;
-      document.getElementById("AllActionPenaltyOfTeamB").innerText = team.numberOfPenalty;
-      document.getElementById("AllActionPossessionOfTeamB").innerText = team.numberOfPossession;
-      document.getElementById("AllActionSaveOfTeamB").innerText = team.numberOfSave;
-      document.getElementById("AllActionShotOfTeamB").innerText = team.numberOfShot;
-      document.getElementById("AllActionSkillMovesOfTeamB").innerText = team.numberOfSkillMoves;
+      document.getElementById("AllActionGoalOfTeamB").innerText =
+        team.numberOfGoals;
+      document.getElementById("AllActionAssistOfTeamB").innerText =
+        team.numberOfAssist;
+      document.getElementById("AllActionDefenceOfTeamB").innerText =
+        team.numberOfDefence;
+      document.getElementById("AllActionDuelOfTeamB").innerText =
+        team.numberOfDuel;
+      document.getElementById("AllActionFoulOfTeamB").innerText =
+        team.numberOfFoul;
+      document.getElementById("AllActionFunnySpecialMomentsOfTeamB").innerText =
+        team.numberOfFunnySpecialMoments;
+      document.getElementById("AllActionGKMovesOfTeamB").innerText =
+        team.numberOfGKMoves;
+      document.getElementById("AllActionOutPfPlayOfTeamB").innerText =
+        team.numberOfOutPfPlay;
+      document.getElementById("AllActionPassingOfTeamB").innerText =
+        team.numberOfPassing;
+      document.getElementById("AllActionPenaltyOfTeamB").innerText =
+        team.numberOfPenalty;
+      document.getElementById("AllActionPossessionOfTeamB").innerText =
+        team.numberOfPossession;
+      document.getElementById("AllActionSaveOfTeamB").innerText =
+        team.numberOfSave;
+      document.getElementById("AllActionShotOfTeamB").innerText =
+        team.numberOfShot;
+      document.getElementById("AllActionSkillMovesOfTeamB").innerText =
+        team.numberOfSkillMoves;
+      btnOfLinks = document.createElement("button");
+      btnOfLinks.setAttribute("class", "btn btn-outline-info");
+      btnOfLinks.setAttribute("data-bs-toggle", "modal");
+      btnOfLinks.setAttribute("data-bs-target", `#${team.nameOfTeam}`);
+      x = document.createTextNode("Video links");
+      btnOfLinks.appendChild(x);
+      document.getElementById("showBtnLinksAway").appendChild(btnOfLinks);
+      modalCreator(team.nameOfTeam,team.goals,'goals');
       break;
   }
+}
+
+function modalCreator(nameOfTeam,arrayTag, tag) {
+  console.log(arrayTag);
+  let modal = document.createElement("div");
+  modal.setAttribute("class", "modal fade");
+  modal.setAttribute("id", nameOfTeam);
+  modal.setAttribute("tabindex", "-1");
+  modal.setAttribute("aria-labelledby", `${nameOfTeam}Label`);
+  modal.setAttribute("aria-hidden", "true");
+  let modalDialog = document.createElement("div");
+  modalDialog.setAttribute("class", "modal-dialog");
+  let modalContent = document.createElement("div");
+  modalContent.setAttribute("class", "modal-content");
+  let modalHeader = document.createElement("div");
+  modalHeader.setAttribute("class", "modal-header");
+  let modalTitle = document.createElement("h5");
+  modalTitle.setAttribute("class", "modal-title");
+  modalTitle.setAttribute("id", `${nameOfTeam}Label`);
+  modalTitle.innerText = tag.toUpperCase();
+  let modalBody = document.createElement("div");
+  modalBody.setAttribute("class", "modal-body");
+  for (let i = 0; i < arrayTag.length; i++) {
+    const ele= arrayTag[i].download_link;
+    btnOfLinks = document.createElement("a");
+    btnOfLinks.setAttribute("class", "btn btn-outline-info w-50 highLightBtns");
+    btnOfLinks.href = ele
+    x = document.createTextNode("Goal"+ (i+1));
+    let brEle = document.createElement('br')
+    btnOfLinks.appendChild(x);
+    modalBody.appendChild(btnOfLinks)
+    modalBody.appendChild(brEle)
+  }
+  modalHeader.appendChild(modalTitle)
+  modalContent.appendChild(modalHeader);
+  modalContent.appendChild(modalBody);
+  modalDialog.appendChild(modalContent);
+  modal.append(modalDialog);
+  document.body.appendChild(modal);
 }
