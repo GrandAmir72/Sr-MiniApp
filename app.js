@@ -96,7 +96,7 @@ function biuldUpTeams(teamImport, teamProity) {
     numberOfPossession: 0,
     possessions: [],
     numberOfPenalty: 0,
-    penalty: [],
+    penaltys: [],
   };
   for (let i = 0; i < teamImport.length; i++) {
     const element = teamImport[i];
@@ -152,12 +152,28 @@ function biuldUpTeams(teamImport, teamProity) {
         break;
       case "penalty":
         team.numberOfPenalty += 1;
-        team.penalty.push(element);
+        team.penaltys.push(element);
         break;
     }
   }
-  let btnOfLinks
-  let x
+  // let btnOfLinks;
+  // let x;
+  let tags = [
+    "goal",
+    "assist",
+    "passing",
+    "shot",
+    "funnySpecialMoment",
+    "GKMove",
+    "skillMove",
+    "defence",
+    "save",
+    "duel",
+    "foul",
+    "outOfPlay",
+    "possession",
+    "penalty",
+  ];
   switch (teamProity) {
     case "A":
       document.getElementById("teamNameA").innerText = team.nameOfTeam;
@@ -190,14 +206,24 @@ function biuldUpTeams(teamImport, teamProity) {
         team.numberOfShot;
       document.getElementById("AllActionSkillMovesOfTeamA").innerText =
         team.numberOfSkillMoves;
-        btnOfLinks = document.createElement("button");
-      btnOfLinks.setAttribute("class", "btn btn-outline-info");
-      btnOfLinks.setAttribute("data-bs-toggle", "modal");
-      btnOfLinks.setAttribute("data-bs-target", `#${team.nameOfTeam}`);
-       x= document.createTextNode("Video links");
-      btnOfLinks.appendChild(x);
-      document.getElementById("showBtnLinks").appendChild(btnOfLinks);
-      modalCreator(team.nameOfTeam,team.goals,'goals');
+        
+      let btnOfLinksGoals = document.createElement("button");
+      btnOfLinksGoals.setAttribute("class", "btn btn-outline-info");
+      btnOfLinksGoals.setAttribute("data-bs-toggle", "modal");
+      btnOfLinksGoals.setAttribute("data-bs-target"," #goals");
+      let xGoals = document.createTextNode("Video links");
+      btnOfLinksGoals.appendChild(xGoals);
+      document.getElementById("showBtnLinksGoals").appendChild(btnOfLinksGoals);
+      modalCreator(team.goals, 'goals');
+
+      let btnOfLinksAssists = document.createElement("button");
+      btnOfLinksAssists.setAttribute("class", "btn btn-outline-info");
+      btnOfLinksAssists.setAttribute("data-bs-toggle", "modal");
+      btnOfLinksAssists.setAttribute("data-bs-target"," #assists");
+      let xAssists = document.createTextNode("Video links");
+      btnOfLinksAssists.appendChild(xAssists);
+      document.getElementById("showBtnLinksAssist").appendChild(btnOfLinksAssists);
+      modalCreator(team.assists, 'assists');
       break;
     case "B":
       document.getElementById("teamNameB").innerText = team.nameOfTeam;
@@ -230,25 +256,34 @@ function biuldUpTeams(teamImport, teamProity) {
         team.numberOfShot;
       document.getElementById("AllActionSkillMovesOfTeamB").innerText =
         team.numberOfSkillMoves;
-      btnOfLinks = document.createElement("button");
-      btnOfLinks.setAttribute("class", "btn btn-outline-info");
-      btnOfLinks.setAttribute("data-bs-toggle", "modal");
-      btnOfLinks.setAttribute("data-bs-target", `#${team.nameOfTeam}`);
-      x = document.createTextNode("Video links");
-      btnOfLinks.appendChild(x);
-      document.getElementById("showBtnLinksAway").appendChild(btnOfLinks);
-      modalCreator(team.nameOfTeam,team.goals,'goals');
+      let btnOfLinksGoalAway = document.createElement("button");
+      btnOfLinksGoalAway.setAttribute("class", "btn btn-outline-info");
+      btnOfLinksGoalAway.setAttribute("data-bs-toggle", "modal");
+      btnOfLinksGoalAway.setAttribute("data-bs-target", "#goals");
+      let xGoalAway = document.createTextNode("Video links");
+      btnOfLinksGoalAway.appendChild(xGoalAway);
+      document.getElementById("showBtnLinksGoalsAway").appendChild(btnOfLinksGoalAway);
+      modalCreator(team.goals, "goals");
+
+      let btnOfLinksAssistAway = document.createElement("button");
+      btnOfLinksAssistAway.setAttribute("class", "btn btn-outline-info");
+      btnOfLinksAssistAway.setAttribute("data-bs-toggle", "modal");
+      btnOfLinks.setAttribute("data-bs-target"," #assists");
+      let xAssistAway = document.createTextNode("Video links");
+      btnOfLinksAssistAway.appendChild(xAssistAway);
+      document.getElementById("showBtnLinksAssistAway").appendChild(btnOfLinksAssistAway);
+      modalCreator(team.assists, 'assists');
       break;
   }
 }
 
-function modalCreator(nameOfTeam,arrayTag, tag) {
+function modalCreator(arrayTag, tag) {
   console.log(arrayTag);
   let modal = document.createElement("div");
   modal.setAttribute("class", "modal fade");
-  modal.setAttribute("id", nameOfTeam);
+  modal.setAttribute("id", tag);
   modal.setAttribute("tabindex", "-1");
-  modal.setAttribute("aria-labelledby", `${nameOfTeam}Label`);
+  modal.setAttribute("aria-labelledby", `${tag}Label`);
   modal.setAttribute("aria-hidden", "true");
   let modalDialog = document.createElement("div");
   modalDialog.setAttribute("class", "modal-dialog");
@@ -258,22 +293,22 @@ function modalCreator(nameOfTeam,arrayTag, tag) {
   modalHeader.setAttribute("class", "modal-header");
   let modalTitle = document.createElement("h5");
   modalTitle.setAttribute("class", "modal-title");
-  modalTitle.setAttribute("id", `${nameOfTeam}Label`);
+  modalTitle.setAttribute("id", `${tag}Label`);
   modalTitle.innerText = tag.toUpperCase();
   let modalBody = document.createElement("div");
   modalBody.setAttribute("class", "modal-body");
   for (let i = 0; i < arrayTag.length; i++) {
-    const ele= arrayTag[i].download_link;
+    const ele = arrayTag[i].download_link;
     btnOfLinks = document.createElement("a");
     btnOfLinks.setAttribute("class", "btn btn-outline-info w-50 highLightBtns");
-    btnOfLinks.href = ele
-    x = document.createTextNode("Goal"+ (i+1));
-    let brEle = document.createElement('br')
+    btnOfLinks.href = ele;
+    x = document.createTextNode(tag + (i + 1));
+    let brEle = document.createElement("br");
     btnOfLinks.appendChild(x);
-    modalBody.appendChild(btnOfLinks)
-    modalBody.appendChild(brEle)
+    modalBody.appendChild(btnOfLinks);
+    modalBody.appendChild(brEle);
   }
-  modalHeader.appendChild(modalTitle)
+  modalHeader.appendChild(modalTitle);
   modalContent.appendChild(modalHeader);
   modalContent.appendChild(modalBody);
   modalDialog.appendChild(modalContent);
