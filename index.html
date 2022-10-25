@@ -772,7 +772,8 @@ function modalCreator(arrayTag, tag, sits) {
     btnOfLinks = document.createElement("a");
     btnOfLinks.setAttribute("class", "btn btn-outline-info w-50 highLightBtns");
     btnOfLinks.href = ele;
-    x = document.createTextNode(tag + (i + 1));
+    let btnLabel = tag.toProperCase()
+    x = document.createTextNode(btnLabel +' '+ (i + 1));
     let brEle = document.createElement("br");
     btnOfLinks.appendChild(x);
     modalBody.appendChild(btnOfLinks);
