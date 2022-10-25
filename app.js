@@ -34,6 +34,9 @@ ExcelToJSON = function () {
 };
 
 function calcItems() {
+  document.getElementById("saveBtn").hidden = false
+  document.getElementById("calcBtn").style.display = 'none'
+  document.getElementById("operatorSection").style.display = 'none'
   document.getElementById("showData").style.display = "block";
   document.getElementById("showAllAction").style.display = "block";
   let logoTeamA = URL.createObjectURL(
@@ -63,6 +66,7 @@ function calcItems() {
   }
   biuldUpTeams(teamA, "A");
   biuldUpTeams(teamB, "B");
+
 }
 function biuldUpTeams(teamImport, teamProity) {
   let team = {
@@ -155,25 +159,50 @@ function biuldUpTeams(teamImport, teamProity) {
         team.penaltys.push(element);
         break;
     }
+    if (team.goals.length > 0) {
+      document.getElementById("Goals").style.display = "flex"
+    }
+    if (team.assists.length > 0) {
+      document.getElementById("Assist").style.display = "flex"
+    }
+    if (team.passings.length > 0) {
+      document.getElementById("Pass").style.display = "flex"
+    }
+    if (team.shots.length > 0) {
+      document.getElementById("Shot").style.display = "flex"
+    }
+    if (team.funnySpecialMoments.length > 0) {
+      document.getElementById("Fun/Special").style.display = "flex"
+    }
+    if (team.GKMoves.length > 0) {
+      document.getElementById("GK-Moves").style.display = "flex"
+    }
+    if (team.skillMoves.length > 0) {
+      document.getElementById("Skill").style.display = "flex"
+    }
+    if (team.defences.length > 0) {
+      document.getElementById("Defence").style.display = "flex"
+    }
+    if (team.saves.length > 0) {
+      document.getElementById("Save").style.display = "flex"
+    }
+    if (team.duels.length > 0) {
+      document.getElementById("Duel").style.display = "flex"
+    }
+    if (team.fouls.length > 0) {
+      document.getElementById("Foul").style.display = "flex"
+    }
+    if (team.outOfPlays.length > 0) {
+      document.getElementById("OutOfPlay").style.display = "flex"
+    }
+    if (team.possessions.length > 0) {
+      document.getElementById("Possession").style.display = "flex"
+    }
+    if (team.penaltys.length > 0) {
+      document.getElementById("Penalty").style.display = "flex"
+
+    }
   }
-  // let btnOfLinks;
-  // let x;
-  let tags = [
-    "goal",
-    "assist",
-    "passing",
-    "shot",
-    "funnySpecialMoment",
-    "GKMove",
-    "skillMove",
-    "defence",
-    "save",
-    "duel",
-    "foul",
-    "outOfPlay",
-    "possession",
-    "penalty",
-  ];
   switch (teamProity) {
     case "A":
       document.getElementById("teamNameA").innerText = team.nameOfTeam;
@@ -206,24 +235,62 @@ function biuldUpTeams(teamImport, teamProity) {
         team.numberOfShot;
       document.getElementById("AllActionSkillMovesOfTeamA").innerText =
         team.numberOfSkillMoves;
-        
-      let btnOfLinksGoals = document.createElement("button");
-      btnOfLinksGoals.setAttribute("class", "btn btn-outline-info");
-      btnOfLinksGoals.setAttribute("data-bs-toggle", "modal");
-      btnOfLinksGoals.setAttribute("data-bs-target"," #goals");
-      let xGoals = document.createTextNode("Video links");
-      btnOfLinksGoals.appendChild(xGoals);
-      document.getElementById("showBtnLinksGoals").appendChild(btnOfLinksGoals);
-      modalCreator(team.goals, 'goals');
-
-      let btnOfLinksAssists = document.createElement("button");
-      btnOfLinksAssists.setAttribute("class", "btn btn-outline-info");
-      btnOfLinksAssists.setAttribute("data-bs-toggle", "modal");
-      btnOfLinksAssists.setAttribute("data-bs-target"," #assists");
-      let xAssists = document.createTextNode("Video links");
-      btnOfLinksAssists.appendChild(xAssists);
-      document.getElementById("showBtnLinksAssist").appendChild(btnOfLinksAssists);
-      modalCreator(team.assists, 'assists');
+        if (team.goals.length > 0) {
+          btnCreator("goal", "Home");
+          modalCreator(team.goals, "goal", "Home");
+        }
+        if (team.assists.length > 0) {
+          btnCreator("assist", "Home");
+          modalCreator(team.assists, "assist", "Home");
+        }
+        if (team.passings.length > 0) {
+          btnCreator("pass", "Home");
+          modalCreator(team.passings, "pass", "Home");
+        }
+        if (team.shots.length > 0) {
+          btnCreator("shot", "Home");
+          modalCreator(team.shots, "shot", "Home");
+        }
+        if (team.funnySpecialMoments.length > 0) {
+          btnCreator("funnySpecialMoment", "Home");
+          modalCreator(team.funnySpecialMoments, "funnySpecialMoment", "Home");
+        }
+        if (team.GKMoves.length > 0) {
+          btnCreator("GKMove", "Home");
+          modalCreator(team.GKMoves, "GKMove", "Home");
+        }
+        if (team.skillMoves.length > 0) {
+          btnCreator("skillMove", "Home");
+          modalCreator(team.skillMoves, "skillMove", "Home");
+        }
+        if (team.defences.length > 0) {
+          btnCreator("defence", "Home");
+          modalCreator(team.defences, "defence", "Home");
+        }
+        if (team.saves.length > 0) {
+          btnCreator("save", "Home");
+          modalCreator(team.saves, "save", "Home");
+        }
+        if (team.duels.length > 0) {
+          btnCreator("duel", "Home");
+          modalCreator(team.duels, "duel", "Home");
+        }
+        if (team.fouls.length > 0) {
+          btnCreator("foul", "Home");
+          modalCreator(team.fouls, "foul", "Home");
+        }
+        if (team.outOfPlays.length > 0) {
+          btnCreator("outOfPlay", "Home");
+          modalCreator(team.outOfPlays, "outOfPlay", "Home");
+        }
+        if (team.possessions.length > 0) {
+          btnCreator("possession", "Home");
+          modalCreator(team.possessions, "possession", "Home");
+        }
+        if (team.penaltys.length > 0) {
+          btnCreator("penalty", "Home");
+          modalCreator(team.penaltys, "penalty", "Home");
+        }
       break;
     case "B":
       document.getElementById("teamNameB").innerText = team.nameOfTeam;
@@ -256,32 +323,71 @@ function biuldUpTeams(teamImport, teamProity) {
         team.numberOfShot;
       document.getElementById("AllActionSkillMovesOfTeamB").innerText =
         team.numberOfSkillMoves;
-      let btnOfLinksGoalAway = document.createElement("button");
-      btnOfLinksGoalAway.setAttribute("class", "btn btn-outline-info");
-      btnOfLinksGoalAway.setAttribute("data-bs-toggle", "modal");
-      btnOfLinksGoalAway.setAttribute("data-bs-target", "#goals");
-      let xGoalAway = document.createTextNode("Video links");
-      btnOfLinksGoalAway.appendChild(xGoalAway);
-      document.getElementById("showBtnLinksGoalsAway").appendChild(btnOfLinksGoalAway);
-      modalCreator(team.goals, "goals");
+      if (team.goals.length > 0) {
+        btnCreator("goal", "Away");
+        modalCreator(team.goals, "goal", "Away");
+      }
+      if (team.assists.length > 0) {
+        btnCreator("assist", "Away");
+        modalCreator(team.assists, "assist", "Away");
+      }
+      if (team.passings.length > 0) {
+        btnCreator("pass", "Away");
+        modalCreator(team.passings, "pass", "Away");
+      }
+      if (team.shots.length > 0) {
+        btnCreator("shot", "Away");
+        modalCreator(team.shots, "shot", "Away");
+      }
+      if (team.funnySpecialMoments.length > 0) {
+        btnCreator("funnySpecialMoment", "Away");
+        modalCreator(team.funnySpecialMoments, "funnySpecialMoment", "Away");
+      }
+      if (team.GKMoves.length > 0) {
+        btnCreator("GKMove", "Away");
+        modalCreator(team.GKMoves, "GKMove", "Away");
+      }
+      if (team.skillMoves.length > 0) {
+        btnCreator("skillMove", "Away");
+        modalCreator(team.skillMoves, "skillMove", "Away");
+      }
+      if (team.defences.length > 0) {
+        btnCreator("defence", "Away");
+        modalCreator(team.defences, "defence", "Away");
+      }
+      if (team.saves.length > 0) {
+        btnCreator("save", "Away");
+        modalCreator(team.saves, "save", "Away");
+      }
+      if (team.duels.length > 0) {
+        btnCreator("duel", "Away");
+        modalCreator(team.duels, "duel", "Away");
+      }
+      if (team.fouls.length > 0) {
+        btnCreator("foul", "Away");
+        modalCreator(team.fouls, "foul", "Away");
+      }
+      if (team.outOfPlays.length > 0) {
+        btnCreator("outOfPlay", "Away");
+        modalCreator(team.outOfPlays, "outOfPlay", "Away");
+      }
+      if (team.possessions.length > 0) {
+        btnCreator("possession", "Away");
+        modalCreator(team.possessions, "possession", "Away");
+      }
+      if (team.penaltys.length > 0) {
+        btnCreator("penalty", "Away");
+        modalCreator(team.penaltys, "penalty", "Away");
+      }
 
-      let btnOfLinksAssistAway = document.createElement("button");
-      btnOfLinksAssistAway.setAttribute("class", "btn btn-outline-info");
-      btnOfLinksAssistAway.setAttribute("data-bs-toggle", "modal");
-      btnOfLinks.setAttribute("data-bs-target"," #assists");
-      let xAssistAway = document.createTextNode("Video links");
-      btnOfLinksAssistAway.appendChild(xAssistAway);
-      document.getElementById("showBtnLinksAssistAway").appendChild(btnOfLinksAssistAway);
-      modalCreator(team.assists, 'assists');
       break;
   }
 }
 
-function modalCreator(arrayTag, tag) {
-  console.log(arrayTag);
+function modalCreator(arrayTag, tag, sits) {
   let modal = document.createElement("div");
   modal.setAttribute("class", "modal fade");
-  modal.setAttribute("id", tag);
+  modal.setAttribute("id", tag + sits);
   modal.setAttribute("tabindex", "-1");
   modal.setAttribute("aria-labelledby", `${tag}Label`);
   modal.setAttribute("aria-hidden", "true");
@@ -314,4 +420,34 @@ function modalCreator(arrayTag, tag) {
   modalDialog.appendChild(modalContent);
   modal.append(modalDialog);
   document.body.appendChild(modal);
+}
+function btnCreator(tag, side) {
+  let btnKoft = document.createElement("button");
+  btnKoft.setAttribute("class", "btn btn-outline-info btn-sm");
+  btnKoft.setAttribute("data-bs-toggle", "modal");
+  btnKoft.setAttribute("data-bs-target", `#${tag + side}`);
+  let x = document.createTextNode("links");
+  btnKoft.appendChild(x);
+  let btnShow = tag.toProperCase();
+  document.getElementById(`showBtnLinks${btnShow + side}`).appendChild(btnKoft);
+}
+
+String.prototype.toProperCase = function () {
+  return this.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
+};
+
+function saveToPdf (){
+  var fileName =  `${document.getElementById('titleEvent').value}.html`;
+  downloadInnerHtml(fileName, 'gameSheet','text/html');
+}
+function downloadInnerHtml(filename, elId, mimeType) {
+  var elHtml = document.getElementById(elId).innerHTML;
+  var link = document.createElement('a');
+  mimeType = mimeType || 'text/plain';
+
+  link.setAttribute('download', filename);
+  link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(elHtml));
+  link.click(); 
 }

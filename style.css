@@ -19,6 +19,10 @@
   margin: 0 auto;
 }
 
+.showRoeIsNotEmpty{
+  display: none;
+}
+
 @media screen and (max-width: 420px) {
   .teamLogo {
     visibility: hidden;
@@ -45,5 +49,11 @@
   .resultTitle {
     display: block;
     margin-top: 20%;
+  }
+  .resultNums{
+    font-size: 13px;
+    white-space: nowrap;
+    margin-top: 10px;
+    display: block;
   }
 }

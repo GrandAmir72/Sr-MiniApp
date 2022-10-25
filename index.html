@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html id="gameSheet" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="assets/images/sr-icon.ico" />
+    <link rel="icon" type="image/x-icon" href="sr-icon.ico" />
     <title>SR-Mini App</title>
     <!-- CSS only -->
     <link
@@ -18,12 +18,12 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-10 mx-auto ">
+        <div id="operatorSection" class="col-10 mx-auto ">
           <div class="row">
             <div class="col-12">
               <img
                 width="80"
-                src="assets/images/smartRunners-logo.png"
+                src="smartRunners-logo.png"
                 alt=""
                 srcset=""
                 class="mt-3"
@@ -90,13 +90,14 @@
               />
             </div>
           </div>
-          <button onclick="calcItems()" class="btn btn-outline-info mt-3">
+          <button id="calcBtn" onclick="calcItems()" class="btn btn-outline-info mt-3">
             Calc
           </button>
       </div>
-      <div class="row mt-3 mb-3">
+      <div  class="row mt-3 mb-3">
         <div class="col-10 mx-auto">
           <div  >
+            <button hidden class="btn btn-outline-success" id="saveBtn" onclick="saveToPdf()">Save</button>
             <div id="showData" class="info-Teams-Header row">
               <div class="row text-center text-white">
                 <div class="col-4">
@@ -126,174 +127,153 @@
                 </div>
               </div>
             </div>
-            <div id="showAllAction" class="row text-center mt-2 border " style="display:none;">
+            <div id="showAllAction" class="row text-center border " style="display:none;">
               <div class="col-12 mx-auto ">
-                <div class="row p-2">
-                  <div id="showBtnLinksGoals" class="col-4">
+                <div id="Goals" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksGoalHome" class="col-4">
                   </div>
                   <div class="col-4">
-                    <span class="h3"> <span id="AllActionGoalOfTeamA"></span> - Goals - <span id="AllActionGoalOfTeamB"></span> </span>
+                    <span class="h3 resultNums"> <span id="AllActionGoalOfTeamA"></span> - Goals - <span id="AllActionGoalOfTeamB"></span> </span>
                   </div>
-                  <div id="showBtnLinksGoalsAway" class="col-4">
+                  <div id="showBtnLinksGoalAway" class="col-4">
                   </div>
                 </div>
-                <div class="row p-2">
-                  <div id="showBtnLinksAssist" class="col-4">
+                <div id="Assist" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksAssistHome" class="col-4">
                   </div>
                   <div class="col-4">
-                    <span class="h3"> <span id="AllActionAssistOfTeamA"></span> - Assist - <span id="AllActionAssistOfTeamB"></span> </span>
+                    <span class="h3 resultNums"> <span id="AllActionAssistOfTeamA"></span> - Assist - <span id="AllActionAssistOfTeamB"></span> </span>
                   </div>
                   <div id="showBtnLinksAssistAway" class="col-4">
                   </div>
                 </div>
-                <div class="row p-2">
-                  <div class="col-4">
+                <div id="Pass" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksPassHome" class="col-4">
                   </div>
                   <div class="col-4">
-                    <span class="h3"> <span id="AllActionPassingOfTeamA"></span> - Pass - <span id="AllActionPassingOfTeamB" ></span> </span>
+                    <span class="h3 resultNums"> <span id="AllActionPassingOfTeamA"></span> - Pass - <span id="AllActionPassingOfTeamB" ></span> </span>
                   </div>
-                  <div class="col-4">
-                  </div>
-                </div>
-                <div class="row p-2">
-                  <div class="col-4">
-                  </div>
-                  <div class="col-4">
-                    <span class="h3"> <span id="AllActionShotOfTeamA"></span> - Shot - <span id="AllActionShotOfTeamB" ></span> </span>
-                  </div>
-                  <div class="col-4">
+                  <div id="showBtnLinksPassAway" class="col-4">
                   </div>
                 </div>
-                <div class="row p-2">
-                  <div class="col-4">
+                <div id="Shot" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksShotHome" class="col-4">
                   </div>
                   <div class="col-4">
-                    <span class="h3"> <span id="AllActionFunnySpecialMomentsOfTeamA"></span> - Fun/Special - <span id="AllActionFunnySpecialMomentsOfTeamB"></span> </span>
+                    <span class="h3 resultNums"> <span id="AllActionShotOfTeamA"></span> - Shot - <span id="AllActionShotOfTeamB" ></span> </span>
                   </div>
-                  <div class="col-4">
-                  </div>
-                </div>
-                <div class="row p-2">
-                  <div class="col-4">
-                  </div>
-                  <div class="col-4">
-                    <span class="h3"> <span id="AllActionGKMovesOfTeamA"></span> - GK Moves - <span id="AllActionGKMovesOfTeamB"></span> </span>
-                  </div>
-                  <div class="col-4">
+                  <div id="showBtnLinksShotAway" class="col-4">
                   </div>
                 </div>
-                <div class="row p-2">
-                  <div class="col-4">
+                <div id="Fun/Special" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksFunnySpecialMomentHome" class="col-4">
                   </div>
                   <div class="col-4">
-                    <span class="h3"> <span id="AllActionSkillMovesOfTeamA"></span> - Skill - <span id="AllActionSkillMovesOfTeamB"></span> </span>
+                    <span class="h3 resultNums"> <span id="AllActionFunnySpecialMomentsOfTeamA"></span> - Fun/Special - <span id="AllActionFunnySpecialMomentsOfTeamB"></span> </span>
                   </div>
-                  <div class="col-4">
-                  </div>
-                </div>
-                <div class="row p-2">
-                  <div class="col-4">
-                  </div>
-                  <div class="col-4">
-                    <span class="h3"> <span id="AllActionDefenceOfTeamA"></span> - Defence - <span id="AllActionDefenceOfTeamB"></span> </span>
-                  </div>
-                  <div class="col-4">
+                  <div id="showBtnLinksFunnySpecialMomentAway" class="col-4">
                   </div>
                 </div>
-                <div class="row p-2">
-                  <div class="col-4">
+                <div id="GK-Moves" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksGKMoveHome" class="col-4">
                   </div>
                   <div class="col-4">
-                    <span class="h3"> <span id="AllActionSaveOfTeamA"></span> - Save - <span id="AllActionSaveOfTeamB"></span> </span>
+                    <span class="h3 resultNums"> <span id="AllActionGKMovesOfTeamA"></span> - GK Moves - <span id="AllActionGKMovesOfTeamB"></span> </span>
                   </div>
-                  <div class="col-4">
-                  </div>
-                </div>
-                <div class="row p-2">
-                  <div class="col-4">
-                  </div>
-                  <div class="col-4">
-                    <span class="h3"> <span id="AllActionDuelOfTeamA"></span> - Duel - <span id="AllActionDuelOfTeamB"></span> </span>
-                  </div>
-                  <div class="col-4">
+                  <div  id="showBtnLinksGKMoveAway" class="col-4">
                   </div>
                 </div>
-                <div class="row p-2">
-                  <div class="col-4">
+                <div id="Skill" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksSkillMoveHome" class="col-4">
                   </div>
                   <div class="col-4">
-                    <span class="h3"> <span id="AllActionFoulOfTeamA"></span> - Foul - <span id="AllActionFoulOfTeamB"></span> </span>
+                    <span class="h3 resultNums"> <span id="AllActionSkillMovesOfTeamA"></span> - Skill - <span id="AllActionSkillMovesOfTeamB"></span> </span>
                   </div>
-                  <div class="col-4">
-                  </div>
-                </div>
-                <div class="row p-2">
-                  <div class="col-4">
-                  </div>
-                  <div class="col-4">
-                    <span class="h3"> <span id="AllActionOutPfPlayOfTeamA"></span> - Out of Play - <span id="AllActionOutPfPlayOfTeamB"></span> </span>
-                  </div>
-                  <div class="col-4">
+                  <div id="showBtnLinksSkillMoveAway" class="col-4">
                   </div>
                 </div>
-                <div class="row p-2">
-                  <div class="col-4">
+                <div id="Defence" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksDefenceHome" class="col-4">
                   </div>
                   <div class="col-4">
-                    <span class="h3"> <span id="AllActionPossessionOfTeamA"></span> - Possession - <span id="AllActionPossessionOfTeamB"></span> </span>
+                    <span class="h3 resultNums"> <span id="AllActionDefenceOfTeamA"></span> - Defence - <span id="AllActionDefenceOfTeamB"></span> </span>
                   </div>
-                  <div class="col-4">
+                  <div id="showBtnLinksDefenceAway" class="col-4">
                   </div>
                 </div>
-                <div class="row p-2">
-                  <div class="col-4">
+                <div id="Save" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksSaveHome" class="col-4">
                   </div>
                   <div class="col-4">
-                    <span class="h3"> <span id="AllActionPenaltyOfTeamA"></span> - Penalty - <span id="AllActionPenaltyOfTeamB"></span> </span>
+                    <span class="h3 resultNums"> <span id="AllActionSaveOfTeamA"></span> - Save - <span id="AllActionSaveOfTeamB"></span> </span>
+                  </div>
+                  <div id="showBtnLinksSaveAway" class="col-4">
+                  </div>
+                </div>
+                <div id="Duel" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksDuelHome" class="col-4">
                   </div>
                   <div class="col-4">
+                    <span class="h3 resultNums"> <span id="AllActionDuelOfTeamA"></span> - Duel - <span id="AllActionDuelOfTeamB"></span> </span>
+                  </div>
+                  <div id="showBtnLinksDuelAway" class="col-4">
+                  </div>
+                </div>
+                <div id="Foul" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksFoulHome" class="col-4">
+                  </div>
+                  <div class="col-4">
+                    <span class="h3 resultNums"> <span id="AllActionFoulOfTeamA"></span> - Foul - <span id="AllActionFoulOfTeamB"></span> </span>
+                  </div>
+                  <div id="showBtnLinksFoulAway" class="col-4">
+                  </div>
+                </div>
+                <div id="OutOfPlay" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksOutOfPlayHome" class="col-4">
+                  </div>
+                  <div class="col-4">
+                    <span class="h3 resultNums"> <span id="AllActionOutPfPlayOfTeamA"></span> - Out of Play - <span id="AllActionOutPfPlayOfTeamB"></span> </span>
+                  </div>
+                  <div id="showBtnLinksOutOfPlayAway" class="col-4">
+                  </div>
+                </div>
+                <div id="Possession" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksPossessionHome" class="col-4">
+                  </div>
+                  <div class="col-4">
+                    <span class="h3 resultNums"> <span id="AllActionPossessionOfTeamA"></span> - Possession - <span id="AllActionPossessionOfTeamB"></span> </span>
+                  </div>
+                  <div id="showBtnLinksPossessionAway" class="col-4">
+                  </div>
+                </div>
+                <div id="Penalty" class="row p-2 showRoeIsNotEmpty">
+                  <div id="showBtnLinksPenaltyHome" class="col-4">
+                  </div>
+                  <div class="col-4">
+                    <span class="h3 resultNums"> <span id="AllActionPenaltyOfTeamA"></span> - Penalty - <span id="AllActionPenaltyOfTeamB"></span> </span>
+                  </div>
+                  <div id="showBtnLinksPenaltyAway" class="col-4">
                   </div>
                 </div>
               </div>
+              
             </div>
+            
           </div>
         </div>
       </div>
-      <!-- Modal -->
-      <!-- <button class="btn btn-outline-info btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Download</button> -->
-
-  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="modalViewer">
-
-  </div> -->
-
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
-
-    <!-- JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"
-    ></script>
-
+      crossorigin="anonymous">
+    </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
